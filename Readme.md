@@ -45,14 +45,17 @@ Application runs in isolated environments (Dev / Staging / Prod)
 ## 📁 Repository Structure
 
 
+```text
 multi-env-devops-platform/
-│
-├── terraform/ # Infrastructure as Code
-├── app/ # Application source code
-├── deploy/ # Deployment scripts & configs
-├── .github/workflows # CI/CD pipelines
+├── terraform/           # Infrastructure as Code
+├── app/                 # Application source code
+├── deploy/              # Deployment scripts and configs
+├── .github/workflows/   # CI/CD pipelines
 ├── .gitignore
 └── README.md
+
+
+```
 
 
 
@@ -72,6 +75,8 @@ git commit -m "Describe changes"
 
 # Upload to GitHub
 git push
+
+```
 
 
 
