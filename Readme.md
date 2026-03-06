@@ -77,10 +77,13 @@ git commit -m "Describe changes"
 git push
 
 ```
+---
 
 
+---
 
-🎯 Learning Objectives
+
+## 🎯 Learning Objectives
 
 Through this project, I practice:
 
@@ -96,8 +99,12 @@ Automating deployments with CI/CD pipelines
 
 Following real multi-environment DevOps workflows
 
+---
 
-📌 Author
+
+---
+
+## 📌 Author
 
 Ntenis Sampani
 
@@ -106,3 +113,5 @@ Computer Science Student
 
 
 DevOps & Cloud Engineering Enthusiast
+
+---
