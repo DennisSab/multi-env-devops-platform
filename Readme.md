@@ -80,9 +80,6 @@ git push
 ---
 
 
----
-
-
 ## 🎯 Learning Objectives
 
 Through this project, I practice:
@@ -101,8 +98,6 @@ Following real multi-environment DevOps workflows
 
 ---
 
-
----
 
 ## 📌 Author
 
