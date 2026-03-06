@@ -21,9 +21,9 @@ variable "key_name" {
   type        = string
 }
 
-variable "ssh_allowed_cidr" {
-  description = "Your public IP in CIDR format, e.g. 1.2.3.4/32"
-  type        = string
+variable "ssh_allowed_cidrs" {
+  description = "List of public IPs allowed for SSH"
+  type        = list(string)
 }
 
 variable "create_eip" {

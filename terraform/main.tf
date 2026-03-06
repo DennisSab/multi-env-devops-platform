@@ -35,11 +35,11 @@ resource "aws_security_group" "ec2_sg" {
   description = "Security group for multi-env devops platform"
 
   ingress {
-    description = "SSH from my IP"
+    description = "SSH from my IPs"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [var.ssh_allowed_cidr]
+    cidr_blocks = var.ssh_allowed_cidrs
   }
 
   ingress {
@@ -56,7 +56,7 @@ resource "aws_security_group" "ec2_sg" {
     from_port   = 3001
     to_port     = 3001
     protocol    = "tcp"
-    cidr_blocks = [var.ssh_allowed_cidr]
+    cidr_blocks = var.ssh_allowed_cidrs
   }
 
   ingress {
@@ -64,7 +64,7 @@ resource "aws_security_group" "ec2_sg" {
     from_port   = 3002
     to_port     = 3002
     protocol    = "tcp"
-    cidr_blocks = [var.ssh_allowed_cidr]
+    cidr_blocks = var.ssh_allowed_cidrs
   }
 
   egress {
