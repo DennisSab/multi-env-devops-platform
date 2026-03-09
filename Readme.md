@@ -15,7 +15,7 @@ This project simulates a real-world deployment workflow across three environment
   Pre-production environment where changes are reviewed and validated before release.
 
 - **Production (Prod)**  
-  The live system used by real users.
+  The live system used by real users .
 
 The objective is to understand how code moves safely from development to production using modern DevOps workflows.
 
