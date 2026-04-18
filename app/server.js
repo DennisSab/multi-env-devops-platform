@@ -12,7 +12,7 @@ Multi-Environment Deployment Platform
 Environment: ${APP_ENV}
 Hostname: ${HOSTNAME}
 Port: ${PORT}
-Message: Node.js app is running successfully
+Message: Deployed via PR
 `;
 
   res.writeHead(200, { "Content-Type": "text/plain" });
