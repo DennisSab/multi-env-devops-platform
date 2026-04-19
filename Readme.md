@@ -29,16 +29,52 @@ The objective is to understand how code moves safely from development to product
 - **Nginx** — Reverse proxy & web server
 - **GitHub Actions** — CI/CD automation pipelines
 - **Linux (WSL)** — Local development environment
+- **Docker Hub** — Container image registry
+- **Node.js** — Sample web application
+
 
 ---
 
 ## 🏗️ Architecture Overview
 
-Developer writes code locally →  
-Pushes to GitHub →  
-CI/CD pipeline builds & deploys →  
-Terraform provisions AWS infrastructure →  
-Application runs in isolated environments (Dev / Staging / Prod)
+**Developer → GitHub → GitHub Actions → Docker Hub → AWS EC2 → Nginx → Users**
+
+High-Level Flow
+Developer writes code locally
+Changes are pushed to GitHub
+GitHub Actions builds and pushes Docker images
+The EC2 server pulls the correct image
+Nginx routes traffic to the correct environment container
+
+---
+
+
+## 🌍 Enviromnets
+
+| Environment    | Purpose                                |
+| -------------- | -------------------------------------- |
+| **Dev**        | Development and testing of new changes |
+| **Staging**    | Pre-production validation              |
+| **Production** | Live application for end users         |
+
+---
+
+## 🔄 CI/CD Workflow
+1. Code is developed in the dev branch
+2. Pull Request: dev → staging
+3. Merge triggers staging deployment
+4. Pull Request: staging → main
+5. Merge triggers production deployment
+GitHub Actions Pipeline
+
+For each deployment, the workflow:
+
+checks out the repository
+detects the target environment from the branch
+builds the Docker image
+pushes the image to Docker Hub
+connects to the EC2 instance via SSH
+runs the deployment script for the selected environment
 
 ---
 
@@ -56,6 +92,55 @@ multi-env-devops-platform/
 
 
 ```
+
+---
+
+## 📈 Architecture Diagram
+
+                         ┌──────────────────────┐
+                         │   Developer (Local)  │
+                         └──────────┬───────────┘
+                                    │
+                                    │ git push / PR
+                                    ▼
+                         ┌──────────────────────┐
+                         │       GitHub         │
+                         │  Branches + PR Flow  │
+                         └──────────┬───────────┘
+                                    │
+                                    │ triggers
+                                    ▼
+                         ┌──────────────────────┐
+                         │   GitHub Actions     │
+                         │   Build / Push /     │
+                         │      Deploy          │
+                         └──────────┬───────────┘
+                                    │
+                     push image      │      ssh deploy
+                                    │
+                ┌───────────────────▼───────────────────┐
+                │              Docker Hub               │
+                │      dev / staging / prod images      │
+                └───────────────────┬───────────────────┘
+                                    │
+                                    │ pull image
+                                    ▼
+                     ┌──────────────────────────────────┐
+                     │          AWS EC2 Instance        │
+                     │                                  │
+                     │  ┌────────────────────────────┐  │
+                     │  │           Nginx            │  │
+                     │  │ Reverse Proxy / Routing    │  │
+                     │  └───────────┬────────────────┘  │
+                     │              │                   │
+                     │    ┌─────────┼─────────┐         │
+                     │    ▼         ▼         ▼         │
+                     │ app-dev  app-staging  app-prod  │
+                     │                                  │
+                     └──────────────────────────────────┘
+                                    │
+                                    ▼
+                                  Users
 
 
 
