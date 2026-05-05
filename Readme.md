@@ -189,7 +189,7 @@ Following real multi-environment DevOps workflows
 Ntenis Sampani
 
 
-Computer Science Student
+Computer Science Grad Student
 
 
 DevOps & Cloud Engineering Enthusiast
