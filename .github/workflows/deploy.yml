@@ -52,4 +52,12 @@ jobs:
 
       - name: Deploy on EC2
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "cd ~/multi-env/deploy && ./deploy.sh ${{ steps.vars.outputs.env_name }}"
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
+            cd ~/multi-env &&
+            git fetch origin &&
+            git checkout main &&
+            git pull origin main &&
+            chmod +x deploy/deploy.sh &&
+            cd deploy &&
+            ./deploy.sh ${{ steps.vars.outputs.env_name }}
+          "
